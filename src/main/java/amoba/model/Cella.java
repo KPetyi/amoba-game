@@ -1,0 +1,18 @@
+package amoba.model;
+
+public enum Cella {
+    EMPTY('.'),
+    X('X'),
+    O('O');
+
+    public final char symbol;
+
+    Cella(char symbol) {
+        this.symbol = symbol;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(symbol);
+    }
+}
