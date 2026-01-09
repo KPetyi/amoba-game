@@ -16,10 +16,8 @@ public class Fajlkezelo {
 
     public void saveGame(Palya palya) {
         StringBuilder sb = new StringBuilder();
-        // Első sor: sorok és oszlopok száma
         sb.append(palya.getRows()).append(" ").append(palya.getCols()).append("\n");
 
-        // Pálya tartalmának mentése
         for (int i = 0; i < palya.getRows(); i++) {
             for (int j = 0; j < palya.getCols(); j++) {
                 sb.append(palya.getCell(new Pozicio(i, j)).symbol);
@@ -43,14 +41,12 @@ public class Fajlkezelo {
 
         try {
             List<String> lines = Files.readAllLines(Path.of(FILE_NAME));
-            // Méretek beolvasása az első sorból
             String[] dims = lines.get(0).split(" ");
             int rows = Integer.parseInt(dims[0]);
             int cols = Integer.parseInt(dims[1]);
 
             Palya palya = new Palya(rows, cols);
 
-            // Pálya feltöltése
             for (int i = 0; i < rows; i++) {
                 // +1, mert az első sor a méret
                 String line = lines.get(i + 1);

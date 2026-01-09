@@ -1,19 +1,18 @@
 package amoba.model;
 
-import java.util.Arrays;
-
 public class Palya {
     private final int rows;
     private final int cols;
-    private final Cella[][] grid;
+    private final Cella[][] cells; // A tábla cellái
 
     public Palya(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        this.grid = new Cella[rows][cols];
-        // Kezdetben minden mező üres
-        for (Cella[] row : grid) {
-            Arrays.fill(row, Cella.EMPTY);
+        this.cells = new Cella[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                cells[i][j] = Cella.URES;
+            }
         }
     }
 
@@ -25,33 +24,29 @@ public class Palya {
         return cols;
     }
 
-    public Cella getCell(Pozicio pos) {
-        if (pos.row() < 0 || pos.row() >= rows || pos.col() < 0 || pos.col() >= cols) {
-            throw new IllegalArgumentException("Érvénytelen pozíció: " + pos);
-        }
-        return grid[pos.row()][pos.col()];
+    public Cella getCell(Pozicio p) {
+        return cells[p.row()][p.col()];
     }
 
-    public void setCell(Pozicio pos, Cella cella) {
-        if (pos.row() < 0 || pos.row() >= rows || pos.col() < 0 || pos.col() >= cols) {
-            throw new IllegalArgumentException("Érvénytelen pozíció: " + pos);
-        }
-        grid[pos.row()][pos.col()] = cella;
+    public void setCell(Pozicio p, Cella c) {
+        cells[p.row()][p.col()] = c;
     }
 
-    // Ez segít majd kirajzolni a táblát a konzolra
+    public boolean isOnBoard(Pozicio p) {
+        return p.row() >= 0 && p.row() < rows &&
+                p.col() >= 0 && p.col() < cols;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("  ");
-        for (int j = 0; j < cols; j++) {
-            sb.append((char) ('a' + j)).append(" ");
-        }
+        for (int j = 0; j < cols; j++) sb.append((char) ('a' + j)).append(" ");
         sb.append("\n");
         for (int i = 0; i < rows; i++) {
-            sb.append(i + 1).append(i + 1 < 10 ? " " : "");
+            sb.append((i + 1)).append(i < 9 ? " " : "");
             for (int j = 0; j < cols; j++) {
-                sb.append(grid[i][j].symbol).append(" ");
+                sb.append(cells[i][j] == Cella.URES ? "." : cells[i][j]).append(" ");
             }
             sb.append("\n");
         }

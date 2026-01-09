@@ -1,7 +1,7 @@
 package amoba.model;
 
 public enum Cella {
-    EMPTY('.'),
+    URES('.'),
     X('X'),
     O('O');
 
