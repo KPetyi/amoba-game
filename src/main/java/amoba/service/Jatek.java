@@ -54,20 +54,4 @@ public class Jatek {
         }
         return true;
     }
-
-    public Pozicio getAiMove(Palya palya) {
-        Random rand = new Random();
-        int rows = palya.getRows();
-        int cols = palya.getCols();
-
-        for (int i = 0; i < 100; i++) {
-            int r = rand.nextInt(rows);
-            int c = rand.nextInt(cols);
-            Pozicio p = new Pozicio(r, c);
-            if (isValidMove(palya, p)) {
-                return p;
-            }
-        }
-        return null;
-    }
 }

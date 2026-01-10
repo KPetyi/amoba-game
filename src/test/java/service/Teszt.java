@@ -54,14 +54,6 @@ class Teszt {
         for(int i = 0; i < 4; i++) {
             jatek.makeMove(palya, new Pozicio(0, i), Cella.X);
         }
-        assertTrue(jatek.checkWin(palya, Cella.X), "4 vízszintes jelre nyernie kell");
-    }
-
-    @Test
-    void testAiMove_Mukodik() {
-        Pozicio aiTipp = jatek.getAiMove(palya);
-
-        assertNotNull(aiTipp);
-        assertEquals(Cella.URES, palya.getCell(aiTipp));
+        assertTrue(jatek.checkWin(palya, Cella.X), "5 vízszintes jelre nyernie kell");
     }
 }

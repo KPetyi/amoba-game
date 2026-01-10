@@ -48,7 +48,6 @@ public class Fajlkezelo {
             Palya palya = new Palya(rows, cols);
 
             for (int i = 0; i < rows; i++) {
-                // +1, mert az első sor a méret
                 String line = lines.get(i + 1);
                 for (int j = 0; j < cols; j++) {
                     char c = line.charAt(j);
